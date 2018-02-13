@@ -20,18 +20,25 @@ func main() {
 	fmt.Print("Enter a phone number: ")
 	text, _ := reader.ReadString('\n')
 	text = strings.TrimSuffix(text, "\n") //removes the trailing '\n' otherwise throws the count off..
+	PhoneNumberFormatter(text)
+}
 
-	var length = len(text)
+func PhoneNumberFormatter(number string) (string) {
+	var length = len(number)
 	if length == FORMATTED_LENGTH {
-		if isFormatted(text) {
+		if isFormatted(number) {
 			fmt.Println("Holy cow! Let's unformat it!")
-			var unformatted = unformat(text)
+			var unformatted = unformat(number)
 			fmt.Println("Unformatted number: ", unformatted)
+			return unformatted
 		}
 	} else {
-		fmt.Println("Length of", text, "is", length, "so that won't work... Let's try formatting it!")
-		fmt.Println(format(text))
+		fmt.Println("Length of", number, "is", length, "so that won't work... Let's try formatting it!")
+		var formatted = format(number)
+		fmt.Println(formatted)
+		return formatted
 	}
+	return number
 }
 
 /*
